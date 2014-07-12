@@ -34,9 +34,9 @@ class EventsController < ApplicationController
                                    :app_name => 'GDG-Aracaju')
 
         event = cal.create_event do |e|
-          e.title = @event.description
-          e.start_time = Time.now
-          e.end_time = Time.now + (60 * 60) # seconds * min
+          e.title = "#{@event.description} criado por: #{@event.user.email}"
+          e.start_time = @event.dt_begin
+          e.end_time = @event.dt_end
         end
 
         format.html { redirect_to @event, notice: 'Event was successfully created.' }

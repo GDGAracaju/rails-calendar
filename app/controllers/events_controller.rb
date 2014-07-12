@@ -25,9 +25,20 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
+    @event.user_id = current_user.id
 
     respond_to do |format|
       if @event.save
+        cal = Google::Calendar.new(:username => 'railscurso@gmail.com',
+                                   :password => 'iloverails',
+                                   :app_name => 'GDG-Aracaju')
+
+        event = cal.create_event do |e|
+          e.title = @event.description
+          e.start_time = Time.now
+          e.end_time = Time.now + (60 * 60) # seconds * min
+        end
+
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
@@ -62,13 +73,13 @@ class EventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event
+    @event = Event.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def event_params
-      params.require(:event).permit(:description, :dt_begin, :dt_end)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def event_params
+    params.require(:event).permit(:description, :dt_begin, :dt_end, :user_id)
+  end
 end

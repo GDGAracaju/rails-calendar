@@ -1,19 +1,21 @@
-<!DOCTYPE html>
 <html>
   <head>
     <title>GdgPsql</title>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
   </head>
   <body>
     <div class="container">
-      <h2>Gdg Rails</h2>
-      <h4>
-        <% if user_signed_in? %>
-          <%= link_to("Sair", destroy_user_session_path, method: :delete) %></h4>
-        <%= image_tag("Ruby_Calendar.png", width: 400) %>
-      <% end %>
+      <div class="row">
+        <div class="col-lg-6">
+          <h3>Gdg Rails</h3>
+        </div>
+        <div class="col-lg-6 text-right">
+          <h3><%= link_to("Sair", destroy_user_session_path, method: :delete) if user_signed_in? %></h3>
+        </div>
+      </div>
+      <hr/>
       <%= yield %>
     </div>
 

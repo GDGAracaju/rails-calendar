@@ -7,13 +7,15 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <h2>Gdg Rails</h2>
-    <h4>
-      <% if user_signed_in? %>
-        <%= link_to("Sair", destroy_user_session_path, method: :delete) %></h4>
-      <%= image_tag("Ruby_Calendar.png", width: 400) %>
-    <% end %>
-    <%= yield %>
+    <div class="container">
+      <h2>Gdg Rails</h2>
+      <h4>
+        <% if user_signed_in? %>
+          <%= link_to("Sair", destroy_user_session_path, method: :delete) %></h4>
+        <%= image_tag("Ruby_Calendar.png", width: 400) %>
+      <% end %>
+      <%= yield %>
+    </div>
 
   </body>
 </html>

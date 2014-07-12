@@ -12,5 +12,16 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require bootstrap-datepicker
+//= require locales/bootstrap-datepicker.pt-BR
 //= require_tree .
+
+$(function() {
+  $('.datepicker').datepicker({
+    format: "dd/mm/yyyy",
+    todayBtn: "linked",
+    language: "pt-BR",
+    autoclose: true,
+    todayHighlight: true
+  });
+});

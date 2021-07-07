@@ -28,7 +28,7 @@ gem 'spring',        group: :development
 
 gem 'devise'
 
-gem 'google_calendar'
+gem 'google_calendar', '>= 0.3.1'
 
 gem 'simple_form'
 
